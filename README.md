@@ -15,7 +15,9 @@ Getting Started
 First clone this repository:
 
 >
+
 > git clone https://github.com/tankcdr/dwannotate.git
+
 >
 
 ### ALCHEMYAPI
@@ -24,10 +26,15 @@ Obtain an AlchemyAPI key here: http://www.alchemyapi.com/api/register.html
 Clone the the alchemyapi_node SDK in the src directory
 >
 > cd ./src
+
 > git clone https://github.com/AlchemyAPI/alchemyapi_node.git
+
 > cd alchemyapi_node
+
 > npm install
+
 > node alchemyapi.js YOUR_API_KEY
+
 > node app.js
 > 
 
