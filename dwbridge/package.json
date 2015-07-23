@@ -1,0 +1,21 @@
+{
+  "name": "dwbridge",
+  "version": "1.0.0",
+  "description": "Bridge used to provide binding to an IBM Container",
+  "main": "bridge.js",
+  "scripts": {
+    "start": "node bridge.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://hub.jazz.net/git/tankcdr/dwbridge"
+  },
+  "keywords": [
+    "bluemix",
+    "bridge",
+    "nodejs"
+  ],
+  "author": "Chris Madison (cmadison@us.ibm.com)",
+  "license": "Apache 2.0"
+}
