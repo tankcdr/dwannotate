@@ -1,25 +1,60 @@
-This project ties togther several Bluemix technologies to provide a Watson annotation service. This project is to run as an IBM Container (Docker) as a microservice.
+Introduction
+------------
 
-Users submit inquiries to the Watson passage-based Question and Answer Travel corpus and answers that
-have been enriched by the application. Enrichement starts with named entity recognition. We are using the Entity Extraction API from AlchemyAPI to identify named entities in the Watson Q&A answers. 
+This project contains two projects: dwbridge and dwannotate.
 
-Named entities are then enriched using an Apache-based Fuseki service.
+dwbridge is a simple bridge application that allows one to bind bluemix services and share those service bindings with an IBM Container (Docker) application.
 
-The results are returned to the calling application. The results are a set of answers, with annotations that provide an enriched information.
+dwannotate is a container-based application that receives end user inquiries and returns annotated answers from Watson. When the inquiry is received, the application first sends the inquiry to Watson to obtain a set of ranked answers. Each answer is sent to the AlchemyAPI Entity Extraction API to identify named entities. The identified identies are then used in a SPARQL query to a Fuseki service running in the Bluemix OpenStack implementation. The Fuseki service is hosting DBPedia short_abstract content.
 
 
-GETTING STARTED
 
-_ALCHEMYAPI_
+Getting Started
+---------------
+
+First clone this repository:
+
+>
+> git clone https://github.com/tankcdr/dwannotate.git
+>
+
+### ALCHEMYAPI
+
 Obtain an AlchemyAPI key here: http://www.alchemyapi.com/api/register.html
-clone the the alchemyapi_node SDK in the src directory
-cd into ./src/alchemyapi\_node directory and create an api\_key.txt containing your key
+Clone the the alchemyapi_node SDK in the src directory
+>
+> cd ./src
+> git clone https://github.com/AlchemyAPI/alchemyapi_node.git
+> cd alchemyapi_node
+> npm install
+> node alchemyapi.js YOUR_API_KEY
+> node app.js
+> 
 
 
+### Deploy dwbridge
 
-GENERAL INSTRUCTIONS
-cf login
-suco cf ic login
-docker build -t dwannotate .
-docker tag dwannotate registry.ng.bluemix.net/{your registry}/dwannotate
-docker push registry.ng.bluemix.net/{your registry}/dwannotate
+> 
+> cd dwbridge
+> cf push --no-start --no-route
+> //create a qa service
+> cf create-service question_and_answer question_and_answer_free dwQA
+> //bind the bridge
+> cf bind_service dwbridge dwQA
+>
+
+
+### Deploy and run dwannotate
+
+>
+> //establish session
+> cf login
+> //establish container session
+> sudo cf ic login
+> //build image
+> docker build -t dwannotate .
+> //tag it
+> docker tag -f dwannotate registry.ng.bluemix.net/{your registry}/dwannotate
+> //push it
+> docker push registry.ng.bluemix.net/{your registry}/dwannotate
+
