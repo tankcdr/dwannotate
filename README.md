@@ -47,11 +47,13 @@ Clone the the alchemyapi_node SDK in the src directory
 
 > //create a qa service
 
-> cf create-service question_and_answer question_and_answer_free dwQA
+> cf create-service question_and_answer question_and_answer_free_plan dwQA
 
 > //bind the bridge
 
-> cf bind_service dwbridge dwQA
+> cf bind-service dwbridge dwQA
+
+> cf restart dwbridge //after app has been staged
 
 
 ### Deploy and run dwannotate
