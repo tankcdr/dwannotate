@@ -24,7 +24,7 @@ First clone this repository:
 
 Obtain an AlchemyAPI key here: http://www.alchemyapi.com/api/register.html
 Clone the the alchemyapi_node SDK in the src directory
->
+
 > cd ./src
 
 > git clone https://github.com/AlchemyAPI/alchemyapi_node.git
@@ -41,27 +41,38 @@ Clone the the alchemyapi_node SDK in the src directory
 
 ### Deploy dwbridge
 
-> 
 > cd dwbridge
+
 > cf push --no-start --no-route
+
 > //create a qa service
+
 > cf create-service question_and_answer question_and_answer_free dwQA
+
 > //bind the bridge
+
 > cf bind_service dwbridge dwQA
->
 
 
 ### Deploy and run dwannotate
 
->
 > //establish session
+
 > cf login
+
 > //establish container session
+
 > sudo cf ic login
+
 > //build image
+
 > docker build -t dwannotate .
+
 > //tag it
+
 > docker tag -f dwannotate registry.ng.bluemix.net/{your registry}/dwannotate
+
 > //push it
+
 > docker push registry.ng.bluemix.net/{your registry}/dwannotate
 
