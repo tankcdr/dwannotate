@@ -1,0 +1,10 @@
+{
+	"query": "PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT  ?comment {  <$target> rdfs:comment ?comment .  }",
+	"regex": "$target",
+	"options": {
+		"host": "129.41.154.187",
+		"port": "3030",
+		"path": "/dwdata/query",
+		"method": "GET"
+	}
+}

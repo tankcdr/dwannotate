@@ -1,0 +1,43 @@
+doctype html
+html(lang='en')
+  head
+    block title
+      title Annotating Watson
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    link(rel='stylesheet', href='/css/slick/slick-theme.css')
+    link(rel='stylesheet', href='/css/slick/slick.css')
+    link(rel='stylesheet', href='/css/tipped/tipped.css')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/banner.css')
+    link(rel='stylesheet', href='/css/watson-bootstrap-dark.css')
+
+  body(style='background-color: #0AAFEF')
+    include banner.jade
+
+    block row-content
+      div.container
+        div.row
+          div.col-lg-12
+            form.form-horizontal(id='inquiryForm', role='form', target='form-iframe')
+              div.well
+                fieldset
+                  div.form-group.row
+                    a.btn.analyze-btn(role='button',style='float:right;margin-bottom:0;border:0;padding:.5em' ) Ask Watson
+                    span(style='display:block;overflow:hidden;padding-right:10px;')
+                      input(type='text', id='inquiryText', style='width:100%',
+                        placeholder="Please enter a travel related question ...", required="true")
+
+    div.row
+      div.container(style='margin=auto;padding:20px;width:700px')
+        div.slider.single-item(id='answers')
+
+    script(type='text/javascript', src='/js/jquery/jquery-1.11.3.min.js')
+    script(type='text/javascript', src='/js/tipped/tipped.js')
+    script(type='text/javascript', src='/js/slick/slick.min.js')
+    script(type='text/javascript', src='/js/annotate.js')
+    script(type='text/javascript').
+      $(function() { AnnotateWatson.App.init() });
+
